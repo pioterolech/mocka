@@ -9,9 +9,7 @@ extension Array where Element == Entries {
                 throw VaporDataSourceError.invalidURL
             }
 
-            let pathString = String(pathElement.dropFirst())
-
-            return pathString
+            return pathElement
         }
     }
 }

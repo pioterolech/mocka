@@ -17,9 +17,15 @@ class RoutesConfigurator {
         let uniquePaths = Array(Set(allPaths))
         
         let requestsData = uniquePaths.map { element -> RequestData in
-            let entriesForPath = getEntries.filter { $0.request.url.contains(element) }
-            let responseData: [ResponseData] = entriesForPath.map { ResponseData(response: $0.response.content.text, headers: $0.response.headers)
+            let entriesForPath = getEntries.filter {
+                let url = URL(string: $0.request.url)
+                return url?.path == element
             }
+            
+            let responseData: [ResponseData] = entriesForPath.map {
+                ResponseData(response: $0.response.content.text, headers: $0.response.headers)
+            }
+            
             return RequestData(method: method,
                                pathComponents: element.createPathComponents(),
                                responseData: responseData)

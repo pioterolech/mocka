@@ -4,6 +4,6 @@ import Foundation
 extension String {
 
     func createPathComponents() -> [PathComponent] {
-        self.components(separatedBy: "/").map { PathComponent(stringLiteral: $0) }
+        self.dropFirst().components(separatedBy: "/").map { PathComponent(stringLiteral: $0) }
     }
 }
