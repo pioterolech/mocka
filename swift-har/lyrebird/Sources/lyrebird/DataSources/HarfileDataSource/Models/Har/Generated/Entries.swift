@@ -34,14 +34,14 @@ struct Entries: Codable {
   var timings: Timings
   var name: String
   var clientAddress: String
-  var response: Response
+  var response: HarResponse
   var startedDateTime: String
   var isIntercepted: Bool
   var id: String
   var serverAddress: String
   var time: Float
   var isHTTPS: Bool
-  var request: Request
+  var request: HarRequest
   var comment: String
   var clientBundlePath: String
   var serverIPAddress: String
@@ -56,14 +56,14 @@ struct Entries: Codable {
     timings = try container.decode(Timings.self, forKey: .timings)
     name = try container.decode(String.self, forKey: .name)
     clientAddress = try container.decode(String.self, forKey: .clientAddress)
-    response = try container.decode(Response.self, forKey: .response)
+    response = try container.decode(HarResponse.self, forKey: .response)
     startedDateTime = try container.decode(String.self, forKey: .startedDateTime)
     isIntercepted = try container.decode(Bool.self, forKey: .isIntercepted)
     id = try container.decode(String.self, forKey: .id)
     serverAddress = try container.decode(String.self, forKey: .serverAddress)
     time = try container.decode(Float.self, forKey: .time)
     isHTTPS = try container.decode(Bool.self, forKey: .isHTTPS)
-    request = try container.decode(Request.self, forKey: .request)
+    request = try container.decode(HarRequest.self, forKey: .request)
     comment = try container.decode(String.self, forKey: .comment)
     clientBundlePath = try container.decode(String.self, forKey: .clientBundlePath)
     serverIPAddress = try container.decode(String.self, forKey: .serverIPAddress)

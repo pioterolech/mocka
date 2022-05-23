@@ -1,5 +1,5 @@
 //
-//  Response.swift
+//  Request.swift
 //
 //  Created by Piotr Olechnowicz on 18/05/2022
 //  Copyright (c) . All rights reserved.
@@ -7,25 +7,23 @@
 
 import Foundation
 
-struct Response: Codable {
+struct HarRequest: Codable {
 
   enum CodingKeys: String, CodingKey {
-    case status
+    case method
     case headersSize
-    case redirectURL
-    case statusText
     case bodySize
-    case content
+    case url
+    case postData
     case httpVersion
     case headers
   }
 
-  var status: Int
+  var method: String
   var headersSize: Int
-  var redirectURL: String
-  var statusText: String
   var bodySize: Int
-  var content: Content
+  var url: String
+  var postData: PostData?
   var httpVersion: String
   var headers: [Headers]
 
@@ -33,12 +31,11 @@ struct Response: Codable {
 
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    status = try container.decode(Int.self, forKey: .status)
+    method = try container.decode(String.self, forKey: .method)
     headersSize = try container.decode(Int.self, forKey: .headersSize)
-    redirectURL = try container.decode(String.self, forKey: .redirectURL)
-    statusText = try container.decode(String.self, forKey: .statusText)
     bodySize = try container.decode(Int.self, forKey: .bodySize)
-    content = try container.decode(Content.self, forKey: .content)
+    url = try container.decode(String.self, forKey: .url)
+    postData = try container.decodeIfPresent(PostData.self, forKey: .postData)
     httpVersion = try container.decode(String.self, forKey: .httpVersion)
     headers = try container.decode([Headers].self, forKey: .headers)
   }

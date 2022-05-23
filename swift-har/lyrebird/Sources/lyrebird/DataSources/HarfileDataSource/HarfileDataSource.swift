@@ -11,8 +11,8 @@ import Foundation
 class HarfileDataSource {
     static let shared = HarfileDataSource()
 
-    func hostsData() throws -> [HostData] {
-        let filepath = URL(fileURLWithPath: "/Users/piotrolechnowicz/swift-har/swift-har/lyrebird/login.har")
+    func createHarLog(path: String) throws -> [HostData] {
+        let filepath = URL(fileURLWithPath: path)
         let decoded = try HarfileDecoder.decode(fromURL: filepath)
         let uniqueHosts = decoded.uniqueHosts
 

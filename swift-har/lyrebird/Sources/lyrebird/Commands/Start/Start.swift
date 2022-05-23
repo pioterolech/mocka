@@ -15,7 +15,9 @@ struct StartCommand: ParsableCommand {
         )
     }
 
+    @Argument(help: "Har file path") var harFilePath: String
+
     func run() throws {
-        try MockServer.shared.start()
+        try MockServer.shared.start(harFilePath: harFilePath)
     }
 }

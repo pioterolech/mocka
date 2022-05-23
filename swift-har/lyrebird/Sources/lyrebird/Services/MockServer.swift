@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Piotr Olechnowicz on 19/05/2022.
-//
-
 import Foundation
 
 class MockServer {
@@ -12,13 +5,13 @@ class MockServer {
     private var servers: [VaporDataSource] = []
     private let dispatchQueue: DispatchQueue = .global()
 
-    func start() throws {
-        let hostData = try HarfileDataSource.shared.hostsData()
+    func start(harFilePath: String) throws {
+        let harlog = try HarfileDataSource.shared.createHarLog(path: harFilePath)
         let group = DispatchGroup()
         group.enter()
 
         dispatchQueue.async { [weak self] in
-            for item in hostData {
+            for item in harlog {
                 do {
                     let vapor = try VaporDataSource(hostData: item, routesConfigurator: .init())
                     self?.servers.append(vapor)
