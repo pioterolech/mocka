@@ -1,23 +1,16 @@
+//import ArgumentParser
 //
-//  Start.swift
-//  
+//struct StartCommand: ParsableCommand {
+//    static var configuration: CommandConfiguration {
+//        .init(
+//            commandName: "start",
+//            abstract: "Start the servers"
+//        )
+//    }
 //
-//  Created by Piotr Olechnowicz on 19/05/2022.
+//    @Argument(help: "Har file path") var harFilePath: String
 //
-
-import ArgumentParser
-
-struct StartCommand: ParsableCommand {
-    static var configuration: CommandConfiguration {
-        .init(
-            commandName: "start",
-            abstract: "Start the servers"
-        )
-    }
-
-    @Argument(help: "Har file path") var harFilePath: String
-
-    func run() throws {
-        try MockServer.shared.start(harFilePath: harFilePath)
-    }
-}
+//    func run() throws {
+//        try MockServer.shared.start(harFilePath: harFilePath)
+//    }
+//}

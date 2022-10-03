@@ -1,11 +1,11 @@
 import Foundation
 
-class MockServer {
+public class MockServer {
     static let shared = MockServer()
     private var servers: [VaporDataSource] = []
     private let dispatchQueue: DispatchQueue = .global()
 
-    func start(harFilePath: String) throws {
+    public func start(harFilePath: String) throws {
         let harlog = try HarfileDataSource.shared.createHarLog(path: harFilePath)
         let group = DispatchGroup()
         group.enter()
